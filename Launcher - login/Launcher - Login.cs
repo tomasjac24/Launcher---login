@@ -12,6 +12,7 @@ class ProjektKveten
             var moznost = new List<string>();
             var launcher = new List<string>();
             launcher.Clear();
+            //Přidání launcherů
             launcher.Add("Steam");
             launcher.Add("Discord");
             launcher.Add("Spotify");
@@ -23,6 +24,7 @@ class ProjektKveten
             launcher.Add("Zpět");
 
             Console.Clear();
+            //Přídání možností - práce s lounchery
             moznost.Add("1. Přidat / změnit launcher login");
             moznost.Add("2. Vypsat určitý launcher login");
             moznost.Add("3. Vypsat všechny launcher loginy");
@@ -31,6 +33,7 @@ class ProjektKveten
             while (opakovani)
             {
             Zpet:
+            //Vypíše možnosti - práce s lounchery
                 Console.Clear();
                 Console.WriteLine("Launcher Login Saver");
                 Console.WriteLine("----------------------");
@@ -46,6 +49,7 @@ class ProjektKveten
 
                     while (opakovaniZadani)
                     {
+                    //Vypíše launchery
                         Console.Clear();
                         var vyberLauncher = AnsiConsole.Prompt(
                             new SelectionPrompt<string>()
@@ -61,10 +65,12 @@ class ProjektKveten
                         }
                         if (launcher.Contains(vyberLauncher))
                         {
+                            //Zadání údajů launcheru
                             Console.WriteLine("Zadej nové údaje:");
                             Console.WriteLine("----------------------");
                             var jmeno = AnsiConsole.Ask<string>("Jméno: ");
                             var heslo = AnsiConsole.Ask<string>("Heslo: ");
+                            //Zadá údaje do souboru
                             File.WriteAllText(vyberLauncher + ".txt", "JMÉNO: "+ jmeno +", HESLO: "+ heslo);
                         }
                     }
@@ -74,6 +80,7 @@ class ProjektKveten
                     bool opakovaniProdukt = true;
                     while (opakovaniProdukt)
                     {
+                    //Vypíše launchery
                         Console.Clear();
                         var vyberLauncher = AnsiConsole.Prompt(
                             new SelectionPrompt<string>()
@@ -92,6 +99,7 @@ class ProjektKveten
                             }
                             if (launcher.Contains(vyberLauncher))
                             {
+                                //Vypíše launcher a údaje
                                 string obsahSouboru = File.ReadAllText(vyberLauncher + ".txt");
                                 Console.Write(vyberLauncher + " - " + obsahSouboru);
                                 Console.ReadKey();
@@ -99,6 +107,7 @@ class ProjektKveten
                         }
                         catch
                         {
+                            //Pokud vybere uživatel launcher bez údajů, vypíše program -NEZADÁNO-
                             Console.WriteLine("-NEZADÁNO-");
                             Console.ReadKey();
                         }
@@ -107,6 +116,7 @@ class ProjektKveten
                 if (vyber == "3. Vypsat všechny launcher loginy")
                 {
                     Console.Clear();
+                    //Pro každý launcher vypíše: Launcher a údaje
                     foreach (var vyberLauncher in launcher)
                         try
                         {
@@ -115,6 +125,7 @@ class ProjektKveten
                         }
                         catch
                         {
+                            //Pokud nejsou zadány údaje u jednoho z launcherů, vypíše program -LAUNCHER NEZADÁN-
                             Console.WriteLine("");
                             Console.WriteLine("-LAUNCHER NEZADÁN-");
                         }
